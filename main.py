@@ -1,5 +1,6 @@
 import logging
 import sys
+from textwrap import dedent
 import time
 
 import requests
@@ -46,11 +47,14 @@ def main():
                     else:
                         result_msg = 'А ты хорош, бро! Проверяющий был в восторге :D'
 
-                    bot_say = (f'Преподаватель проверил работу "{lesson_title}".\n\n'
-                               f'{result_msg}\n'
-                               f'{lesson_url}')
+                    bot_say = (f'''
+                            Преподаватель проверил работу "{lesson_title}"
 
-                    tg_bot.send_message(text=bot_say, chat_id=tg_chat_id)
+                            {result_msg}
+                            {lesson_url}
+                            ''')
+
+                    tg_bot.send_message(text=dedent(bot_say), chat_id=tg_chat_id)
 
             elif user_reviews['status'] == 'timeout':
                 params['timestamp'] = user_reviews['timestamp_to_request']
