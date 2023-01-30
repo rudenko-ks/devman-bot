@@ -7,12 +7,7 @@ import requests
 import telegram
 from environs import Env
 
-logging.basicConfig(level=logging.INFO,
-                    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-                    handlers=[
-                        logging.FileHandler('debug.log', 'w', 'utf-8'),
-                        logging.StreamHandler(),
-                    ])
+logger = logging.getLogger(__file__)
 
 
 def main():
@@ -28,6 +23,13 @@ def main():
     params = {}
     headers = {'Authorization': f'Token {dvmn_token}'}
     long_polling_url = 'https://dvmn.org/api/long_polling/'
+
+    logging.basicConfig(level=logging.INFO,
+                        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+                        handlers=[
+                            logging.FileHandler('debug.log', 'w', 'utf-8'),
+                            logging.StreamHandler(),
+                        ])
 
     while True:
         try:
@@ -70,4 +72,5 @@ def main():
 
 
 if __name__ == '__main__':
+
     main()
