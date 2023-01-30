@@ -38,6 +38,7 @@ def main():
             user_reviews = response.json()
 
             if user_reviews['status'] == 'found':
+                params['timestamp'] = user_reviews['last_attempt_timestamp']
                 new_attempts = user_reviews['new_attempts']
                 for attempt in new_attempts:
                     lesson_title = attempt['lesson_title']
@@ -72,5 +73,4 @@ def main():
 
 
 if __name__ == '__main__':
-
     main()
