@@ -47,14 +47,14 @@ def main():
                     else:
                         result_msg = 'А ты хорош, бро! Проверяющий был в восторге :D'
 
-                    bot_say = (f'''
+                    text = (f'''
                             Преподаватель проверил работу "{lesson_title}"
 
                             {result_msg}
                             {lesson_url}
                             ''')
 
-                    tg_bot.send_message(text=dedent(bot_say), chat_id=tg_chat_id)
+                    tg_bot.send_message(text=dedent(text), chat_id=tg_chat_id)
 
             elif user_reviews['status'] == 'timeout':
                 params['timestamp'] = user_reviews['timestamp_to_request']
